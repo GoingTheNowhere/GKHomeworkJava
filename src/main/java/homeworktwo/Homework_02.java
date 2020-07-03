@@ -86,29 +86,15 @@ public class Homework_02 {
     public static void displaceArrayElements(int[] array7, int n){
         // Проверка на равенство n нулю необязательна, но оставлена для наглядности.
         if (array7 == null || n == 0 || n % array7.length == 0 || -n % array7.length == 0) {return;}
-        if (n > 0) {
-            if (n > array7.length) {n = n % array7.length;}
-
-            for (int i = 0; i < n; i++) {
-                int temp = array7[array7.length - 1];
-                for (int j = 1; j < array7.length; j++) {
-                    array7[array7.length-j] = array7[array7.length-1-j];
-                }
-                array7[0] = temp;
+        if (n > array7.length || -n > array7.length) {n = n % array7.length;}
+        if (n < 0) {n = n + array7.length;}
+        for (int i = 0; i < n; i++) {
+            int temp = array7[array7.length - 1];
+            for (int j = 1; j < array7.length; j++) {
+                array7[array7.length-j] = array7[array7.length-1-j];
             }
-        }
-        else {
-            n = -n;
-            if (n > array7.length) {
-                n = n % array7.length;
-            }
-            for (int i = 0; i < n; i++) {
-                int temp = array7[0];
-                for (int j = 0; j < array7.length-1; j++) {
-                    array7[j] = array7[j+1];
-                }
-                array7[array7.length - 1] = temp;
-            }
+            array7[0] = temp;
         }
     }
 }
+
