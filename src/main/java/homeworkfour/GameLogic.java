@@ -104,17 +104,21 @@ public class GameLogic {
             y = askUserInput(1, MAP_SIZE[0]) - 1;
             System.out.println("Введите координату хода по оси X:");
             x = askUserInput(1, MAP_SIZE[1]) - 1;
-            if (isCellValid(y, x)) {break;}
+            if (isCellValid(y, x, false)) {break;}
         }
         map[y][x] = DOT_X;
     }
-    public static boolean isCellValid(int y, int x) {
+    public static boolean isCellValid(int y, int x, boolean ai) {
         if (y < 0 || y >= MAP_SIZE[0] || x < 0 || x >= MAP_SIZE[1]) {
-            System.out.println("В эту клетку ходить нельзя. Попробуйте снова.");
+            if (!ai) {
+                System.out.println("В эту клетку ходить нельзя. Попробуйте снова.");
+            }
             return false;
         }
         if (map[y][x] == DOT_EMPTY) return true;
-        System.out.println("В эту клетку ходить нельзя. Попробуйте снова.");
+        if (!ai) {
+            System.out.println("В эту клетку ходить нельзя. Попробуйте снова.");
+        }
         return false;
     }
     /* Задача решена не до конца. Метод работает только для случаев, когда символы игрока образуют последовательную линию.
@@ -134,7 +138,7 @@ public class GameLogic {
                         for (int k = 1; k < dotsToWin-1; k++) {
                             if (map[i][j+k] == symb){
                                 stepsToWin++;
-                                if (stepsToWin == dotsToWin-1 && isCellValid(i, j+k+1)) {
+                                if (stepsToWin == dotsToWin-1 && isCellValid(i, j+k+1, true)) {
                                     y = i;
                                     x = j+k+1;
                                     System.out.println("Компьютер сходил в точку Y:" + (y + 1) + " X:" + (x + 1));
@@ -152,7 +156,7 @@ public class GameLogic {
                         for (int k = 1; k < dotsToWin-1; k++) {
                             if (map[i+k][j] == symb){
                                 stepsToWin++;
-                                if (stepsToWin == dotsToWin-1 && isCellValid(i+k+1, j)) {
+                                if (stepsToWin == dotsToWin-1 && isCellValid(i+k+1, j, true)) {
                                     y = i+k+1;
                                     x = j;
                                     System.out.println("Компьютер сходил в точку Y:" + (y + 1) + " X:" + (x + 1));
@@ -171,7 +175,7 @@ public class GameLogic {
                         for (int k = 1; k < dotsToWin-1; k++) {
                             if (map[i+k][j+k] == symb){
                                 stepsToWin++;
-                                if (stepsToWin == dotsToWin-1 && isCellValid(i+k+1, j+k+1)) {
+                                if (stepsToWin == dotsToWin-1 && isCellValid(i+k+1, j+k+1, true)) {
                                     y = i+k+1;
                                     x = j+k+1;
                                     System.out.println("Компьютер сходил в точку Y:" + (y + 1) + " X:" + (x + 1));
@@ -190,7 +194,7 @@ public class GameLogic {
                         for (int k = 1; k < dotsToWin-1; k++) {
                             if (map[i+k][j-k] == symb){
                                 stepsToWin++;
-                                if (stepsToWin == dotsToWin-1 && isCellValid(i+k+1, j-k-1)) {
+                                if (stepsToWin == dotsToWin-1 && isCellValid(i+k+1, j-k-1, true)) {
                                     y = i+k+1;
                                     x = j-k-1;
                                     System.out.println("Компьютер сходил в точку Y:" + (y + 1) + " X:" + (x + 1));
@@ -208,7 +212,7 @@ public class GameLogic {
         do {
             x = rand.nextInt(MAP_SIZE[1]);
             y = rand.nextInt(MAP_SIZE[0]);
-        } while (!isCellValid(y, x));
+        } while (!isCellValid(y, x, true));
         System.out.println("Компьютер сходил в точку Y:" + (y + 1) + " X:" + (x + 1));
         map[y][x] = DOT_O;
     }
@@ -273,7 +277,9 @@ public class GameLogic {
                             }
                         }
                     }
-                    return stepsToWin == dotsToWin;
+                    if (stepsToWin == dotsToWin){
+                     return true;
+                    }
                 }
             }
         }
