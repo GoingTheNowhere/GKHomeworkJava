@@ -129,11 +129,103 @@ public class GameLogic {
     В качестве параметра методу передается символ, которым обозначается ход игрока (человека).
     */
     public static void aiTurn(char symb) {
-        int x, y;
+        int x = 0, y = 0;
         for (int i = 0; i < MAP_SIZE[0]; i++) {
             for (int j = 0; j < MAP_SIZE[1]; j++) {
                 if (map[i][j] == symb){
-                    byte stepsToWin = 1;
+                    int emptyDots = 0;
+                    // Проверяем комбо по горизонтали
+                    if (j + dotsToWin - 1 < MAP_SIZE[1]) {
+                        for (int k = 1; k < dotsToWin; k++) {
+                            if (map[i][j + k] == DOT_EMPTY) {
+                                y = i;
+                                x = j + k;
+                                emptyDots++;
+                            }
+                            if (emptyDots > 1) {
+                                break;
+                            }
+                            if (!(map[i][j + k] == DOT_EMPTY) && !(map[i][j + k] == symb)) {
+                                break;
+                            }
+                            if (k == dotsToWin - 1) {
+                                System.out.println("Компьютер сходил в точку Y:" + (y + 1) + " X:" + (x + 1));
+                                map[y][x] = DOT_O;
+                                return;
+                            }
+                        }
+                    }
+                    emptyDots = 0;
+                    // Проверяем комбо по вертикали
+                    if (i + dotsToWin - 1 < MAP_SIZE[0]) {
+                        for (int k = 1; k < dotsToWin; k++) {
+                            if (map[i + k][j] == DOT_EMPTY) {
+                                y = i + k;
+                                x = j;
+                                emptyDots++;
+                            }
+                            if (emptyDots > 1) {
+                                break;
+                            }
+
+                            if (!(map[i + k][j] == DOT_EMPTY) && !(map[i + k][j] == symb)) {
+                                break;
+                            }
+                            if (k == dotsToWin - 1) {
+                                System.out.println("Компьютер сходил в точку Y:" + (y + 1) + " X:" + (x + 1));
+                                map[y][x] = DOT_O;
+                                return;
+                            }
+                        }
+                    }
+                    emptyDots = 0;
+                    // Проверяем комбо по диагонали вправо
+                    if (i + dotsToWin - 1 < MAP_SIZE[0] && j + dotsToWin - 1 < MAP_SIZE[1]) {
+                        for (int k = 1; k < dotsToWin; k++) {
+                            if (map[i + k][j + k] == DOT_EMPTY) {
+                                y = i + k;
+                                x = j + k;
+                                emptyDots++;
+                            }
+                            if (emptyDots > 1) {
+                                break;
+                            }
+
+                            if (!(map[i + k][j + k] == DOT_EMPTY) && !(map[i + k][j + k] == symb)) {
+                                break;
+                            }
+                            if (k == dotsToWin - 1) {
+                                System.out.println("Компьютер сходил в точку Y:" + (y + 1) + " X:" + (x + 1));
+                                map[y][x] = DOT_O;
+                                return;
+                            }
+                        }
+                    }
+                    emptyDots = 0;
+                    // Проверяем комбо по диагонали влево
+                    if (i + (dotsToWin - 1) < dotsToWin && j - (dotsToWin - 1) > -1) {
+                        for (int k = 1; k < dotsToWin; k++) {
+                            if (map[i + k][j - k] == DOT_EMPTY) {
+                                y = i + k;
+                                x = j - k;
+                                emptyDots++;
+                            }
+                            if (emptyDots > 1) {
+                                break;
+                            }
+
+                            if (!(map[i + k][j - k] == DOT_EMPTY) && !(map[i + k][j - k] == symb)) {
+                                break;
+                            }
+                            if (k == dotsToWin - 1) {
+                                System.out.println("Компьютер сходил в точку Y:" + (y + 1) + " X:" + (x + 1));
+                                map[y][x] = DOT_O;
+                                return;
+                            }
+                        }
+                    }
+                    emptyDots = 0;
+/*                    byte stepsToWin = 1;
                     // Проверка возможности построения горизонтальной победной комбинации
                     if (j + dotsToWin - 1 < MAP_SIZE[1]){
                         for (int k = 1; k < dotsToWin-1; k++) {
@@ -206,7 +298,7 @@ public class GameLogic {
                                 break;
                             }
                         }
-                    }
+                    }*/
                 }
             }
         }
@@ -263,6 +355,7 @@ public class GameLogic {
             }
         }
         return false;
+//        // старый способ
 //        for (int i = 0; i < MAP_SIZE[0]; i++) {
 //            for (int j = 0; j < MAP_SIZE[1]; j++) {
 //                if (map[i][j] == symb){
