@@ -1,5 +1,6 @@
 package homeworkfour;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -218,72 +219,116 @@ public class GameLogic {
     }
 
     public static boolean checkWin(char symb) {
-        for (int i = 0; i < MAP_SIZE[0]; i++) {
-            for (int j = 0; j < MAP_SIZE[1]; j++) {
+        char[] checkingCombo = new char[dotsToWin];
+        for (int i = 0; i < checkingCombo.length; i++){
+            checkingCombo[i]=symb;
+        }
+        char[] winCombo = new char[dotsToWin];
+        for (int i = 0; i < MAP_SIZE[0]; i++){
+            for (int j = 0; j < MAP_SIZE[1]; j++){
                 if (map[i][j] == symb){
-                    byte stepsToWin = 1; // если мы нашли символ игрока, значит, ему осталось на 1 символ меньше для победы
-                    // Проверка возможности построения горизонтальной победной комбинации
+                    // проверить выигрышное комбо по горизонтали
                     if (j + dotsToWin - 1 < MAP_SIZE[1]){
-                        for (int k = 1; k < dotsToWin; k++) {
-                            if (map[i][j+k] == symb){
-                                stepsToWin++;
-                            } else {
-                                break;
-                            }
+                        for (int k = 0; k < MAP_SIZE[1] && k < dotsToWin; k++) {
+                            winCombo[0+k] = map[i][j+k];
+                            if (Arrays.equals(checkingCombo, winCombo)) return true;
                         }
                     }
-                    if (stepsToWin == dotsToWin){
-                        return true;
-                    } else {
-                        stepsToWin = 1;
-                    }
-                    // Проверка возможности построения вертикальной победной комбинации
-                    if (i + dotsToWin - 1 < MAP_SIZE[0]){
-                        for (int k = 1; k < dotsToWin; k++) {
-                            if (map[i+k][j] == symb){
-                                stepsToWin++;
-                            } else {
-                                break;
-                            }
+                    winCombo = new char[dotsToWin];
+                    // проверить комбо по вертикали
+                    if (i +  dotsToWin - 1 < MAP_SIZE[0]) {
+                        for (int k = 0; k < MAP_SIZE[0] && k < dotsToWin; k++) {
+                            winCombo[0+k] = map[i+k][j];
+                            if (Arrays.equals(checkingCombo, winCombo)) return true;
                         }
                     }
-                    if (stepsToWin == dotsToWin){
-                        return true;
-                    } else {
-                        stepsToWin = 1;
-                    }
-                    // Проверка возможности построения диагональной победной комбинации вправо (вперед)
-                    if (i + dotsToWin - 1 < MAP_SIZE[0] && j + dotsToWin - 1 < MAP_SIZE[1]){
-                        for (int k = 1; k < dotsToWin; k++) {
-                            if (map[i+k][j+k] == symb){
-                                stepsToWin++;
-                            } else {
-                                break;
-                            }
+                    winCombo = new char[dotsToWin];
+                    // проверить комбо по диагонали вперед
+                    if (i +  dotsToWin - 1 < MAP_SIZE[0] && j + dotsToWin - 1 < MAP_SIZE[1]){
+                        for (int k = 0; k < MAP_SIZE[0] && k < dotsToWin; k++) {
+                            winCombo[0+k] = map[i+k][j+k];
+                            if (Arrays.equals(checkingCombo, winCombo)) return true;
                         }
                     }
-                    if (stepsToWin == dotsToWin){
-                        return true;
-                    } else {
-                        stepsToWin = 1;
-                    }
-                    // Проверка возможности построения диагональной победной комбинации влево (назад)
-                    if (i + (dotsToWin - 1) < dotsToWin && j - (dotsToWin - 1) > -1){
-                        for (int k = 1; k < dotsToWin; k++) {
-                            if (map[i+k][j-k] == symb){
-                                stepsToWin++;
-                            } else {
-                                break;
-                            }
+                    winCombo = new char[dotsToWin];
+                    // проверить комбо по диагонали назад
+                    if (i +  dotsToWin - 1 < MAP_SIZE[0] && j - (dotsToWin - 1) > -1){
+                        for (int k = 0; k < MAP_SIZE[0] && k < dotsToWin; k++) {
+                            winCombo[0+k] = map[i+k][j-k];
+                            if (Arrays.equals(checkingCombo, winCombo)) return true;
                         }
                     }
-                    if (stepsToWin == dotsToWin){
-                     return true;
-                    }
+                    winCombo = new char[dotsToWin];
                 }
             }
         }
         return false;
+//        for (int i = 0; i < MAP_SIZE[0]; i++) {
+//            for (int j = 0; j < MAP_SIZE[1]; j++) {
+//                if (map[i][j] == symb){
+//                    byte stepsToWin = 1; // если мы нашли символ игрока, значит, ему осталось на 1 символ меньше для победы
+//                    // Проверка возможности построения горизонтальной победной комбинации
+//                    if (j + dotsToWin - 1 < MAP_SIZE[1]){
+//                        for (int k = 1; k < dotsToWin; k++) {
+//                            if (map[i][j+k] == symb){
+//                                stepsToWin++;
+//                            } else {
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    if (stepsToWin == dotsToWin){
+//                        return true;
+//                    } else {
+//                        stepsToWin = 1;
+//                    }
+//                    // Проверка возможности построения вертикальной победной комбинации
+//                    if (i + dotsToWin - 1 < MAP_SIZE[0]){
+//                        for (int k = 1; k < dotsToWin; k++) {
+//                            if (map[i+k][j] == symb){
+//                                stepsToWin++;
+//                            } else {
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    if (stepsToWin == dotsToWin){
+//                        return true;
+//                    } else {
+//                        stepsToWin = 1;
+//                    }
+//                    // Проверка возможности построения диагональной победной комбинации вправо (вперед)
+//                    if (i + dotsToWin - 1 < MAP_SIZE[0] && j + dotsToWin - 1 < MAP_SIZE[1]){
+//                        for (int k = 1; k < dotsToWin; k++) {
+//                            if (map[i+k][j+k] == symb){
+//                                stepsToWin++;
+//                            } else {
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    if (stepsToWin == dotsToWin){
+//                        return true;
+//                    } else {
+//                        stepsToWin = 1;
+//                    }
+//                    // Проверка возможности построения диагональной победной комбинации влево (назад)
+//                    if (i + (dotsToWin - 1) < dotsToWin && j - (dotsToWin - 1) > -1){
+//                        for (int k = 1; k < dotsToWin; k++) {
+//                            if (map[i+k][j-k] == symb){
+//                                stepsToWin++;
+//                            } else {
+//                                break;
+//                            }
+//                        }
+//                    }
+//                    if (stepsToWin == dotsToWin){
+//                     return true;
+//                    }
+//                }
+//            }
+//        }
+//        return false;
     }
     public static boolean checkDraw() {
         for (int i = 0; i < MAP_SIZE[0]; i++) {
