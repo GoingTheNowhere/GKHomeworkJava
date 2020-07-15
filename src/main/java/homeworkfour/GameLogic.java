@@ -436,9 +436,10 @@ public class GameLogic {
     public static boolean configureGame(){
         System.out.println("Выберите с какими настройками запустить игру:");
         System.out.println("1. Поле 3х3, линия из 3-х знаков для победы.");
-        System.out.println("2. Поле 5х5, линия из 4-х знаков для победы.)");
+        System.out.println("2. Поле 5х5, линия из 4-х знаков для победы.");
+        System.out.println("3. Свои настройки.");
         System.out.println("0. Выйти из игры.");
-        int userInput = askUserInput(0, 2);
+        int userInput = askUserInput(0, 3);
         if (userInput == 0){
             resetToDefault();
             return true;
@@ -447,12 +448,21 @@ public class GameLogic {
             resetToDefault();
             return false;
         }
-        else {
+        if (userInput == 2) {
             MAP_SIZE[0] = 5;
             MAP_SIZE[1] = 5;
             dotsToWin = 4;
             return false;
         }
+        if (userInput == 3) {
+            System.out.println("Введите размер поля по вертикали:");
+            MAP_SIZE[0] = (byte) (askUserInput(3, 127));
+            System.out.println("Введите размер поля по горизонтали:");
+            MAP_SIZE[1] = (byte) (askUserInput(3, 127));
+            System.out.println("Введите количество символов для победы:");
+            dotsToWin = (byte) (askUserInput(3, (MAP_SIZE[1] > MAP_SIZE[0] ? MAP_SIZE[1] : MAP_SIZE[0])));
+        }
+    return false;
     }
     public static int askUserInput (int min, int max){
         while(true) {
