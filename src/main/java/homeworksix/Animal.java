@@ -13,29 +13,31 @@ public class Animal {
         this.name = name;
     }
 
-    protected void run(int distance){
-        if (distance > 0 && distance <= this.maxRunDistance){
-            System.out.println(this.name + " run: true");
+    private void move (double distance, double maxDistance, String moveType){
+        String message = this.name + " " + moveType + ": ";
+        if (distance > 0 && distance <= maxDistance){
+            System.out.println(message + "true");
         }
         else {
-            System.out.println(this.name + " run: false");
+            System.out.println(message + "false");
         }
     }
-    protected void swim(int distance){
-        if (distance > 0 && distance <= this.maxSwimDistance){
-            System.out.println(this.name + " swim: true");
-        }
-        else {
-            System.out.println(this.name + " swim: false");
-        }
+
+    public void run(int distance){
+        move(distance, this.maxRunDistance, "run");
     }
-    protected void jump(double height){
-        if (height > 0 && height <= this.maxJumpHeight){
-            System.out.println(this.name + " jump: true");
-        }
-        else {
-            System.out.println(this.name + " jump: false");
-        }
+    public void swim(int distance){
+        move(distance, this.maxSwimDistance, "swim");
+    }
+    public void jump(double distance){
+        move(distance, this.maxJumpHeight, "jump");
+    }
+    public void showInfo(){
+        System.out.println(
+            this.name + " \n" +
+            "Дистанция бега: " + this.maxRunDistance + "\n" +
+            "Дистанция плавания: " + this.maxSwimDistance + "\n" +
+            "Дистанция прыжка: " + this.maxJumpHeight);
     }
 
 }

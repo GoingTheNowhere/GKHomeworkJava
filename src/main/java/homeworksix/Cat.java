@@ -13,4 +13,5 @@ public class Cat extends Animal {
         super("Кот № " + catID);
         catID++;
     }
+
 }
