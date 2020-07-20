@@ -1,7 +1,11 @@
 package homeworksix;
 
 public class Cat extends Animal {
-    private static int catID = 1;
+    private static int catID;
+
+    static {
+        catID = 1;
+    }
 
     {
         super.maxJumpHeight = 2 + Animal.random.nextInt(3) - 1;
