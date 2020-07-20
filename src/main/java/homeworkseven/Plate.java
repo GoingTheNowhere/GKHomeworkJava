@@ -17,6 +17,6 @@ public class Plate {
         this.food = Math.max(this.food - decreaseAmount, 0);
     }
     public void showInfo() {
-        System.out.println("Еды в тарелке: " + food);
+        System.out.println("Еды в тарелке: " + this.food);
     }
 }
