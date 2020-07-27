@@ -27,7 +27,7 @@ public class Cat {
 
     public void showInfo(){
         System.out.println("Имя: " + this.name + "\n" +
-                "Аппетит: " + this.appetite + "\n" +
-                "Сытость: " + this.bellyful);
+            "Аппетит: " + this.appetite + "\n" +
+            "Сытость: " + this.bellyful);
     }
 }

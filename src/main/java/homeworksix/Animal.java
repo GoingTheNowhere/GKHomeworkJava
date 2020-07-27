@@ -3,10 +3,10 @@ package homeworksix;
 import java.util.Random;
 
 public class Animal {
-    String name;
-    int maxRunDistance;
-    int maxSwimDistance;
-    double maxJumpHeight;
+    protected String name;
+    protected int maxRunDistance;
+    protected int maxSwimDistance;
+    protected double maxJumpHeight;
     protected static Random random = new Random();
 
     protected Animal(String name){
