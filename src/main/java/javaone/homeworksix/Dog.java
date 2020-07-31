@@ -1,4 +1,4 @@
-package homeworksix;
+package javaone.homeworksix;
 
 public class Dog extends Animal {
     private static int dogID;

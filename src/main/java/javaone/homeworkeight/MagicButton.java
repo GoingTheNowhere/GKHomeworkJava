@@ -1,4 +1,4 @@
-package homeworkeight;
+package javaone.homeworkeight;
 
 import javax.swing.*;
 

@@ -1,4 +1,4 @@
-package homeworkseven;
+package javaone.homeworkseven;
 
 public class Plate {
     private int food;

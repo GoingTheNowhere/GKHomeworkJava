@@ -1,4 +1,4 @@
-package homeworkfour;
+package javaone.homeworkfour;
 
 public class TikTakToe {
     public static void main(String[] args) {

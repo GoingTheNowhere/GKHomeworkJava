@@ -1,4 +1,4 @@
-package homeworksix;
+package javaone.homeworksix;
 
 public class Cat extends Animal {
     private static int catID;

@@ -1,4 +1,4 @@
-package homeworkseven;
+package javaone.homeworkseven;
 
 public class Cat {
     private String name;
