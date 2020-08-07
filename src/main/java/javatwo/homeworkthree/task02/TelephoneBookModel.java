@@ -8,30 +8,10 @@ public class TelephoneBookModel {
     private String surname;
     private String telephoneNumber;
 
-    public TelephoneBookModel(){
-
-    }
-
     public TelephoneBookModel(String surname, String telephoneNumber){
         this.surname = surname;
         this.telephoneNumber = telephoneNumber;
     }
-
-/*    public static void setPhonebook(List<String> phonebook) {
-        TelephoneBookModel.phonebook = phonebook;
-    }*/
-
-    public void setTelephoneNumber(String telephoneNumber) {
-        this.telephoneNumber = telephoneNumber;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-/*    public static List<TelephoneBookModel> getPhonebook(){
-        return TelephoneBookModel.phonebook;
-    }*/
 
     public String getSurname(){
         return this.surname;

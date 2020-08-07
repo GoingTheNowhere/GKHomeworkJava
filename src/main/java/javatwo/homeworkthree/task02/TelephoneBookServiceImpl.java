@@ -1,21 +1,18 @@
 package javatwo.homeworkthree.task02;
 
-import java.util.Iterator;
-
 public class TelephoneBookServiceImpl implements TelephoneBookService {
-
-    TelephoneBookModel bookrecord = new TelephoneBookModel();
 
     @Override
     public String findRecord(String surname){
         String result = "Найденные совпадения:\n";
-        Iterator<TelephoneBookModel> iterator = TelephoneBookModel.phonebook.iterator();
-
-        while(iterator.hasNext()){
-            TelephoneBookModel check = iterator.next();
-            if (check.getSurname().equalsIgnoreCase(surname)){
-                result += "Фамилия: " + check.getSurname() + "\n" + "Телефонный номер: " + check.getTelephoneNumber() + "\n";
+        String resultDefault = "Найденные совпадения:\n";
+        for (TelephoneBookModel check : TelephoneBookModel.phonebook) {
+            if (check.getSurname().equalsIgnoreCase(surname)) {
+                result += "Фамилия: " + check.getSurname() + ", телефон: " + check.getTelephoneNumber() + "\n";
             }
+        }
+        if (resultDefault.equalsIgnoreCase(result)){
+            result = surname + ": совпадений не найдено.";
         }
         return result;
     }

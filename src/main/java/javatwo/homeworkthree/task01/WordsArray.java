@@ -9,47 +9,36 @@ public class WordsArray {
     String findUnique() {
         String result = "Список уникальных слов:\n";
         Set<String> tmp = new HashSet<>(words);
-        Iterator<String> iteratorTmp= tmp.iterator();
-        Iterator<String> iteratorWords = words.iterator();
-
-        while(iteratorTmp.hasNext()){
+        for (Iterator<String> iteratorTmp = tmp.iterator(); iteratorTmp.hasNext();) {
             String checkingWord = iteratorTmp.next();
             int counter = 0;
-            while(iteratorWords.hasNext()){
-                if (checkingWord.equals(iteratorWords.next())){
+            for (String word : words) {
+                if (checkingWord.equals(word)) {
                     counter++;
                 }
-                if (counter > 1){
+                if (counter > 1) {
                     iteratorTmp.remove();
                     break;
                 }
             }
-            iteratorWords = words.iterator();
         }
-
         result += tmp.toString();
         return result;
     }
     String countFrequency(){
+
         String result = "Частота повторения слов:\n";
-
         Set<String> tmp = new HashSet<>(words);
-        Iterator<String> iteratorTmp= tmp.iterator();
-        Iterator<String> iteratorWords = words.iterator();
 
-        while(iteratorTmp.hasNext()){
-            String checkingWord = iteratorTmp.next();
+        for (String checkingWord : tmp) {
             int counter = 0;
-            while(iteratorWords.hasNext()){
-                if (checkingWord.equals(iteratorWords.next())){
+            for (String word : words) {
+                if (checkingWord.equals(word)) {
                     counter++;
                 }
             }
-            result += checkingWord + " повторяется " + counter + " раз;\n";
-            iteratorWords = words.iterator();
+            result += checkingWord + " повторяется " + counter + " раз (-а);\n";
         }
-
         return result;
     }
-
 }

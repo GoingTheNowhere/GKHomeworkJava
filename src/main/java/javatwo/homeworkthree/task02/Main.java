@@ -13,5 +13,6 @@ public class Main {
     service.addRecord("Иванов", "111111");
     System.out.println(service.findRecord("Иванов"));
     System.out.println(service.findRecord("Петров"));
+    System.out.println(service.findRecord("Чижиков"));
     }
 }
