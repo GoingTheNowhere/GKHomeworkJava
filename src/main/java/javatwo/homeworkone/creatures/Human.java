@@ -3,17 +3,17 @@ package javatwo.homeworkone.creatures;
 import javatwo.homeworkone.interfaces.Movement;
 import javatwo.homeworkone.obstacles.Obstacle;
 
-public class Human implements Movement {
+public strictfp class Human implements Movement {
     private static int humanID;
     private String name;
-    private double maxRunLenght;
-    private double maxJumpHeight;
+    private float maxRunLenght;
+    private float maxJumpHeight;
 
     {
         humanID++;
         this.name = "Человек № " + humanID;
-        this.maxRunLenght = (double) (Math.round(Math.random() * 100 * 100)) / 100 + 200;
-        this.maxJumpHeight = (double) (Math.round(Math.random() * 10 * 100)) / 100 + 1;
+        this.maxRunLenght = Math.round(Math.random() * 100 * 100) / 100.0f + 200;
+        this.maxJumpHeight = Math.round(Math.random() * 10 * 100) / 100.0f + 1;
     }
     @Override
     public void showCharacteristics(){

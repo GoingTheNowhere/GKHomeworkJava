@@ -3,7 +3,7 @@ package javatwo.homeworkone.obstacles;
 public class Obstacle {
 
     private ObstacleType obstacleType;
-    private double obstacleSize;
+    private float obstacleSize;
 
     protected void setObstacleType(ObstacleType obstacleType){
         this.obstacleType = obstacleType;
@@ -11,10 +11,10 @@ public class Obstacle {
     public ObstacleType getObstacleType(){
         return this.obstacleType;
     }
-    protected void setObstacleSize(double obstacleSize){
+    protected void setObstacleSize(float obstacleSize){
         this.obstacleSize = obstacleSize;
     }
-    public double getObstacleSize(){
+    public float getObstacleSize(){
         return this.obstacleSize;
     }
 
