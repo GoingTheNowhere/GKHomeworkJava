@@ -12,11 +12,15 @@ public class Main {
         Arrays.fill(this.arrayField, 1.0f);
     }
 
+    public void assignNewValue(float[] array, int startingPoint){
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (float) (array[i] * Math.sin(0.2f + startingPoint / 5.f) * Math.cos(0.2f + startingPoint / 5.f) * Math.cos(0.4f + startingPoint / 2.f));
+            startingPoint++;
+        }
+    }
 
     public void assignNewValue(float[] array){
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (float) (array[i] * Math.sin(0.2f + i / 5.f) * Math.cos(0.2f + i / 5.f) * Math.cos(0.4f + i / 2.f));
-        }
+        this.assignNewValue(array, 0);
     }
     public long assignNewValueOneThread(){
         long timeStart = System.currentTimeMillis();
@@ -31,7 +35,7 @@ public class Main {
         System.arraycopy(this.arrayField, 0, arrayPartOne, 0, arrayPartOne.length);
         System.arraycopy(this.arrayField, arrayPartOne.length, arrayPartTwo, 0, arrayPartTwo.length);
         Thread thread1 = new Thread(() -> this.assignNewValue(arrayPartOne));
-        Thread thread2 = new Thread(() -> this.assignNewValue(arrayPartTwo));
+        Thread thread2 = new Thread(() -> this.assignNewValue(arrayPartTwo, arrayPartOne.length));
         thread1.start();
         thread2.start();
         try{
