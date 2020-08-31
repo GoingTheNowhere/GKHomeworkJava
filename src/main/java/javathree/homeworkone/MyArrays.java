@@ -27,7 +27,10 @@ public class MyArrays<T> {
     public static <T> ArrayList<T> createArrayListFromArray(T... array)
             throws IllegalArgumentException{
         if(array == null || array.length < 1) throw new IllegalArgumentException();
-        ArrayList<T> arrayList = new ArrayList<>(Arrays.asList(array));
+        ArrayList<T> arrayList = new ArrayList<>();
+        for (T i:array) {
+            arrayList.add(i);
+        }
         return arrayList;
     }
 

@@ -3,6 +3,8 @@ package javathree.homeworkone;
 import javathree.homeworkone.boxes.Box;
 import javathree.homeworkone.fruits.*;
 
+import java.util.ArrayList;
+
 
 public class Main {
     public static void main(String[] args)
@@ -22,5 +24,12 @@ public class Main {
         orangeBox.moveContentToAnotherBox(orangeBox2);
         System.out.println(orangeBox.getBoxWeight());
         System.out.println(orangeBox2.getBoxWeight());
+        String[] array = new String[]{
+                "Привет",
+                "Пока",
+                "Как дела?"
+        };
+        ArrayList<String> arrayList = MyArrays.createArrayListFromArray(array);
+        System.out.println(arrayList);
     }
 }
