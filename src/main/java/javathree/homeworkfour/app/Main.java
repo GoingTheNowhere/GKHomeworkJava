@@ -1,8 +1,9 @@
-package javathree.homeworkfive.app;
+package javathree.homeworkfour.app;
 
-import javathree.homeworkfive.interfaces.*;
+import javathree.homeworkfour.interfaces.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Main {
@@ -13,10 +14,10 @@ public class Main {
            || list.length == 0){
             return result;
         }
-        for (Integer i: list) {
-            if(i.equals(n)){
-                result = i;
-                return result;
+
+        for (int i = 0; i < list.length; i++) {
+            if(list[i].equals(n)){
+                return i;
             }
         }
         return result;

@@ -1,4 +1,4 @@
-package javathree.homeworkfive.interfaces;
+package javathree.homeworkfour.interfaces;
 
 @FunctionalInterface
 public interface Interface2 {
