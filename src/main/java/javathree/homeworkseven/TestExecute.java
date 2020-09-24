@@ -12,7 +12,7 @@ public class TestExecute {
         Method[] methods = aClass.getDeclaredMethods();
         Method beforeSuit = null;
         Method afterSuit = null;
-        Method[] testMethods = new Method[methods.length - 2];
+        Method[] testMethods = new Method[methods.length];
         for (int i = 0, j = 0, countBeforeSuit = 0, countAfterSuit = 0; i < methods.length; i++, j++) {
             if(methods[i].getAnnotation(BeforeSuit.class) != null) {
                 countBeforeSuit++;
